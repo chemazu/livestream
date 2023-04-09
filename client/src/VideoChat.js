@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import {  io } from "socket.io-client";
+import { io } from "socket.io-client";
 import Peer from "peerjs";
 
 const socket = io("http://localhost:4000", {
@@ -9,8 +9,6 @@ const socket = io("http://localhost:4000", {
 export default function VideoChat() {
   // room id
   const [peers, setPeers] = useState({});
-
-  const [isPresenter, setIsPresenter] = useState(false); // this could be validated either by the 
 
   const { id } = useParams();
   const videoGridRef = useRef();
@@ -30,12 +28,16 @@ export default function VideoChat() {
 
   // add video stream
   function addVideoStream(video, stream) {
+    
     video.srcObject = stream;
     video.addEventListener("loadedmetadata", () => {
       video.play();
     });
+    console.log(videoGridRef.current);
 
     videoGridRef.current.append(video);
+    console.log(videoGridRef.current);
+
   }
   // get new user info
   function connectToNewUser(userId, stream) {
