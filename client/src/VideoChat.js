@@ -28,7 +28,6 @@ export default function VideoChat() {
 
   // add video stream
   function addVideoStream(video, stream) {
-    
     video.srcObject = stream;
     video.addEventListener("loadedmetadata", () => {
       video.play();
@@ -37,8 +36,8 @@ export default function VideoChat() {
 
     videoGridRef.current.append(video);
     console.log(videoGridRef.current);
-
   }
+
   // get new user info
   function connectToNewUser(userId, stream) {
     const call = myPeer.call(userId, stream);
